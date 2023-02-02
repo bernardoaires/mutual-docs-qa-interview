@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = process.env.REACT_APP_API_ENDPOINT
+const API_URL = 'http://localhost:8002'
 
 interface ResponseReturn {
   ok: boolean,

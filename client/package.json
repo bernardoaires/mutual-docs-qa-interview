@@ -1,5 +1,5 @@
 {
-  "name": "veiga-docs",
+  "name": "mutual-docs",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -131,7 +131,7 @@
       "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
     ],
     "testEnvironment": "jsdom",
-    "testRunner": "C:\\Projects\\veiga-docs\\client\\node_modules\\jest-circus\\runner.js",
+    "testRunner": "C:\\Projects\\mutual-docs-qa-interview\\client\\node_modules\\jest-circus\\runner.js",
     "transform": {
       "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/config/jest/babelTransform.js",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",

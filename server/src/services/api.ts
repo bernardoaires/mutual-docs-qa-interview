@@ -1,9 +1,8 @@
 import { Server } from 'socket.io'
 import { documentModel } from './database'
 import { connect } from 'mongoose'
-import * as R from 'ramda'
 
-connect('mongodb://localhost/veiga-docs', {
+connect('mongodb://localhost/mutual-docs', {
   useCreateIndex: true,
   useFindAndModify: false,
   useNewUrlParser: true,
@@ -18,8 +17,6 @@ io.attach(8001, {
     methods: ['GET', 'POST']
   }
 })
-
-const defaultValue = ''
 
 io.on('connection', socket => {
   socket.on('get-document', async (documentId: string, userId: string) => {
@@ -54,26 +51,13 @@ const findOrCreateDocument = async (documentId: string, userId: string) => {
     throw new Error('No userId found')
   }
 
-  const userDocuments = await documentModel.find({
-    $or: [
-      { _id: documentId },
-      { userId }
-    ]
-  })
-
-  const document = userDocuments.find(document => document.userId === userId && document._id === documentId)
-
-  const isAllowed = Boolean(document)
-
-  if (!isAllowed) {
-    throw new Error('User does not have access to document')
-  }
+  const document = await documentModel.findById(documentId)
   
   if (document) return document
   return await documentModel.create({
     _id: documentId,
     userId,
-    data: defaultValue,
+    data: '',
     title: '',
     image: '',
     updatedAt: new Date(),

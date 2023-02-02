@@ -9,7 +9,7 @@ export const validateJWT: RequestHandler = (req, res, next) => {
   }
 
   try {
-    jwt.verify(token, process.env.JWT_KEY!)
+    jwt.verify(token, 'grilofeliz')
     next()
   } catch (err) {
     console.log('Error verifying token.')

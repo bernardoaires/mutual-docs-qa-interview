@@ -22,15 +22,13 @@ app.get('/me', async (req, res) => {
   }
   
   try {
-    const verifiedAccount = jwt.verify(token, process.env.JWT_KEY!, { algorithms: ['HS256'] }) as jwt.JwtPayload
-    console.log(verifiedAccount)
+    const verifiedAccount = jwt.verify(token, 'grilofeliz', { algorithms: ['HS256'] }) as jwt.JwtPayload
     const db = await getDb()
     const accountInfo = await db.collection('Account').findOne({
       _id: verifiedAccount.userId
     })
-    res.send(accountInfo)
+    res.send({ ...accountInfo, sensitiveData: 'Dados confidenciais que usuário não deveria receber.'})
   } catch (err) {
-    console.log(err)
     res.sendStatus(401)
     return
   }
@@ -75,8 +73,8 @@ app.post('/register', async (req, res) => {
     const newAccount = insertedAccount.ops[0]
     const token = jwt.sign({
       userId: newAccount._id
-    }, process.env.JWT_KEY!)
-    res.send({ token })
+    }, 'grilofeliz')
+    setTimeout(() => res.send({ token }), 15000)
   })
 })
 
@@ -110,6 +108,6 @@ app.post('/login', async (req, res) => {
 
   const token = jwt.sign({
     userId: authAccount._id
-  }, process.env.JWT_KEY!)
+  }, 'grilofeliz')
   res.send({ token })
 })

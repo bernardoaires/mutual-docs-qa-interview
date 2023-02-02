@@ -73,7 +73,7 @@ export const Register: React.FC = () => {
             component={TextField}
             control={control}
             name='username'
-            label='Usuário'
+            label='Usurio'
             errorMessage={errors.username?.message}
           />
           <HfField 

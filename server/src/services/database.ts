@@ -2,7 +2,7 @@ import { MongoClient } from 'mongodb'
 import { Schema, model, Document as DocumentType } from 'mongoose'
 
 export const getDb = async () => {
-  const url = 'mongodb://localhost/veiga-docs'
+  const url = 'mongodb://localhost/mutual-docs'
   const client = new MongoClient(url, { useUnifiedTopology: true })
   if (!client.isConnected()) {
     await client.connect()

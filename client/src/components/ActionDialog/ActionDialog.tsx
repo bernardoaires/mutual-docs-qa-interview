@@ -4,15 +4,14 @@ interface ActionDialogProps {
   title: string,
   description: string,
   actions: JSX.Element,
-  onClose: () => void
   open: boolean
 }
 
 export const ActionDialog: React.FC<ActionDialogProps> = (props) => {
-  const { actions, description, title, onClose, open } = props
+  const { actions, description, title, open } = props
 
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog open={open}>
       <DialogTitle>
         {title}
       </DialogTitle>

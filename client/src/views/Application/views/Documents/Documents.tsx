@@ -73,6 +73,7 @@ export const Documents: React.FC = () => {
           <NewDoc height='100%' width='100%' />
         </DocumentCard>
         {documents.map((document, index) => {
+          if (index === 6) throw new Error('An unexpected crash occurred.')
           return (
             <DocumentCard
               key={index}
@@ -100,16 +101,12 @@ export const Documents: React.FC = () => {
       </Box>
       <ActionDialog
         title='Deletar documento?'
-        description='O documento será deletado e removido da listagem.'
+        description='O documento será delatado e remover da listagem.'
         open={showDialog}
-        onClose={toggleDialog}
         actions={(
-          <>
-            <Button onClick={toggleDialog} disabled={loading}>Cancelar</Button>
-            <Button onClick={handleDelete} variant='contained' disabled={loading}>
-              {loading ? <CircularProgress  size={25} /> : 'Deletar'}
-            </Button>
-          </>
+          <Button onClick={handleDelete} variant='contained' disabled={loading}>
+            {loading ? <CircularProgress  size={25} /> : 'Deletar'}
+          </Button>
         )}
       />
     </Layout>

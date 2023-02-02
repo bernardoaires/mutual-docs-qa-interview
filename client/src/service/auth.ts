@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { LoginFormValues, RegisterFormValues } from '~/views'
 
-const AUTH_URL = process.env.REACT_APP_AUTH_ENDPOINT
+const AUTH_URL = 'http://localhost:8000'
 
 interface ResponseReturn {
   ok: boolean,
